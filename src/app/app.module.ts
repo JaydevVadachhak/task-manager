@@ -9,6 +9,12 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RegisterUserComponent } from './components/register-user/register-user.component';
 import { LoginUserComponent } from './components/login-user/login-user.component';
 import { HomeNavComponent } from './components/home-nav/home-nav.component';
+import { HeaderComponent } from './components/dashboard/header/header.component';
+import { FooterComponent } from './components/dashboard/footer/footer.component';
+import { HomeComponent } from './components/dashboard/home/home.component';
+import { ProfileComponent } from './components/dashboard/profile/profile.component';
+import { HelpComponent } from './components/dashboard/help/help.component';
+import { AboutComponent } from './components/dashboard/about/about.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +22,12 @@ import { HomeNavComponent } from './components/home-nav/home-nav.component';
     RegisterUserComponent,
     LoginUserComponent,
     HomeNavComponent,
+    HeaderComponent,
+    FooterComponent,
+    HomeComponent,
+    ProfileComponent,
+    HelpComponent,
+    AboutComponent,
   ],
   imports: [
     BrowserModule,
