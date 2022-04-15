@@ -1,0 +1,127 @@
+<app-home-nav></app-home-nav>
+<div class="container-fluid">
+  <h3 class="primary-heading">{{ pageHeading }}</h3>
+  <form
+    class="form-horizontal"
+    [formGroup]="registerUserForm"
+    (ngSubmit)="onRegisterUser()"
+  >
+    <div class="form-group">
+      <label for="userName"
+        >User Name&nbsp;<span style="color: red">*</span>
+      </label>
+      <input
+        type="text"
+        class="form-control"
+        [class.is-invalid]="userName?.invalid && userName?.touched"
+        formControlName="userName"
+        placeholder="Enter Your Name"
+        required
+      />
+      <div *ngIf="userName?.invalid && userName?.touched">
+        <small *ngIf="userName?.errors?.['required']" class="text-danger"
+          >Name is Required</small
+        >
+        <small *ngIf="userName?.errors?.['minlength']" class="text-danger"
+          >Name must has 3 characters</small
+        >
+        <small *ngIf="userName?.errors?.['forbiddenName']" class="text-danger">
+          {{userName?.errors?.['forbiddenName'].value}} Username Not
+          allowed</small
+        >
+        <small *ngIf="(userName?.errors?.['pattern'])" class="text-danger">
+          Should contain only characters</small
+        >
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="email">Email&nbsp;<span style="color: red">*</span></label>
+      <input
+        type="email"
+        class="form-control"
+        [class.is-invalid]="email?.invalid && email?.touched"
+        formControlName="email"
+        placeholder="name@example.com"
+        required
+      />
+      <div *ngIf="email?.invalid && email?.touched">
+        <small *ngIf="email?.errors?.['required']" class="text-danger"
+          >Email is Required</small
+        >
+        <small *ngIf="(email?.errors?.['email'])" class="text-danger">
+          Email Format Should Be Valid</small
+        >
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="password"
+        >Password&nbsp;<span style="color: red">*</span></label
+      >
+      <input
+        type="password"
+        class="form-control"
+        [class.is-invalid]="password?.invalid && password?.touched"
+        formControlName="password"
+        placeholder="Enter Your Password"
+        required
+      />
+      <div *ngIf="password?.invalid && password?.touched">
+        <small *ngIf="password?.errors?.['required']" class="text-danger"
+          >Password is Required</small
+        >
+        <small *ngIf="(password?.errors?.['pattern'])" class="text-danger">
+          Password should have a (8 Character, 1 Uppercase, 1 Special
+          Character)</small
+        >
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="confirmPassword"
+        >Confirm Password&nbsp;<span style="color: red">*</span></label
+      >
+      <input
+        type="password"
+        class="form-control"
+        [class.is-invalid]="registerUserForm?.errors?.['misMatch']"
+        formControlName="confirmPassword"
+        placeholder="ReEnter Your Password"
+        required
+      />
+      <small
+        *ngIf="(registerUserForm?.errors?.['misMatch'])"
+        class="text-danger"
+      >
+        Password Should match</small
+      >
+    </div>
+    <div class="form-group">
+      <label for="Age">Age&nbsp;<span style="color: red">*</span></label>
+      <input
+        type="text"
+        class="form-control"
+        [class.is-invalid]="age?.invalid && age?.touched"
+        formControlName="age"
+        placeholder="Enter Your Age"
+        required
+      />
+      <div *ngIf="age?.invalid && age?.touched">
+        <small *ngIf="age?.errors?.['required']" class="text-danger"
+          >Age is Required</small
+        >
+        <small *ngIf="(age?.errors?.['pattern'])" class="text-danger">
+          Age Should Be in Number & Between 18 to 60</small
+        >
+      </div>
+    </div>
+    <button
+      [disabled]="registerUserForm.invalid"
+      class="btn btn-primary"
+      type="submit"
+    >
+      Register User
+    </button>
+    <button class="btn btn-secondary" routerLink="/userLogin">
+      Already Registered? Login
+    </button>
+  </form>
+</div>

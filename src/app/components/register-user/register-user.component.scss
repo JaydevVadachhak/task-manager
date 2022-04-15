@@ -1,0 +1,29 @@
+.container-fluid {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  .primary-heading {
+    margin-top: 20px;
+  }
+
+  .form-horizontal {
+    width: 30%;
+    .form-group {
+      margin: 20px;
+    }
+
+    label {
+      margin-bottom: 5px;
+    }
+
+    .btn-primary {
+      margin-left: 20px;
+    }
+
+    .btn-secondary {
+      margin-left: 20px;
+    }
+  }
+}
