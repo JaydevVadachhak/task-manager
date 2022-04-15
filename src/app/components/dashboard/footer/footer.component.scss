@@ -1,0 +1,11 @@
+.navbar {
+  .container-fluid {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .navbar-brand {
+      color: black;
+      font-size: 14px;
+    }
+  }
+}
