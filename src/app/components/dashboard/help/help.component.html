@@ -1,3 +1,66 @@
 <app-header></app-header>
-<p>help works!</p>
+<div class="form-container">
+  <h3 class="primary-heading">{{ pageHeading }}</h3>
+  <form
+    class="form-horizontal"
+    [formGroup]="helpUserForm"
+    (ngSubmit)="onHelpUser()"
+  >
+    <div class="mb-3">
+      <label for="exampleFormControlInput1" class="form-label"
+        >Topic Title&nbsp;<span style="color: red">*</span></label
+      >
+      <input
+        type="text"
+        class="form-control"
+        [class.is-invalid]="helpTitle?.invalid && helpTitle?.touched"
+        formControlName="helpTitle"
+        id="exampleFormControlInput1"
+        placeholder="Write Your Topic Title Here"
+        required
+      />
+      <div *ngIf="helpTitle?.invalid && helpTitle?.touched">
+        <small *ngIf="helpTitle?.errors?.['required']" class="text-danger"
+          >Topic Title is required</small
+        >
+        <small *ngIf="helpTitle?.errors?.['minlength']" class="text-danger"
+          >Title must has 3 characters</small
+        >
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="exampleFormControlTextarea1" class="form-label"
+        >Help Description&nbsp;<span style="color: red">*</span></label
+      >
+      <textarea
+        class="form-control"
+        id="exampleFormControlTextarea1"
+        [class.is-invalid]="
+          helpDescription?.invalid && helpDescription?.touched
+        "
+        formControlName="helpDescription"
+        rows="3"
+        placeholder="Description..."
+        required
+      ></textarea>
+      <div *ngIf="helpDescription?.invalid && helpDescription?.touched">
+        <small *ngIf="helpDescription?.errors?.['required']" class="text-danger"
+          >Help Description is required</small
+        >
+        <small
+          *ngIf="helpDescription?.errors?.['minlength']"
+          class="text-danger"
+          >Description must has atleast 10 characters</small
+        >
+      </div>
+    </div>
+    <button
+      [disabled]="helpUserForm.invalid"
+      class="btn btn-primary"
+      type="submit"
+    >
+      Submit Issue
+    </button>
+  </form>
+</div>
 <app-footer></app-footer>
