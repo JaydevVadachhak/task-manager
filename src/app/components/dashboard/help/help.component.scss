@@ -1,0 +1,22 @@
+.form-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  .primary-heading {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  .form-horizontal {
+    width: 20%;
+    .form-group {
+      margin: 20px;
+    }
+
+    label {
+      margin-bottom: 5px;
+    }
+  }
+}
