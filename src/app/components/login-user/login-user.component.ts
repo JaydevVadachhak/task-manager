@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { UserService } from 'src/app/service/user.service';
 
 @Component({
   selector: 'app-login-user',
@@ -7,14 +9,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginUserComponent implements OnInit {
   pageHeading = 'Login User';
+  displayMessage: boolean = true;
 
-  constructor() {}
+  usersList: any = [];
 
-  ngOnInit(): void {}
+  constructor(private userService: UserService, private router: Router) {}
+
+  ngOnInit(): void {
+    window.sessionStorage.setItem('isAuth', 'false');
+  }
 
   onLoginUser(loginUserForm: any) {
-    if (loginUserForm.valid) {
-      console.log(loginUserForm.value);
-    }
+    this.userService.loginUser(
+      loginUserForm.value.email,
+      loginUserForm.value.password
+    );
+    this.displayMessage = false;
+    setTimeout(() => {
+      this.displayMessage = true;
+      this.router.navigate(['userHome']);
+    }, 1000);
   }
 }

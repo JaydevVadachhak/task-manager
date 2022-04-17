@@ -4,32 +4,32 @@
   <form
     class="form-horizontal"
     [formGroup]="registerUserForm"
-    (ngSubmit)="onRegisterUser()"
+    (ngSubmit)="onRegisterUser(registerUserForm)"
   >
     <div class="form-group">
-      <label for="userName"
+      <label for="name"
         >User Name&nbsp;<span style="color: red">*</span>
       </label>
       <input
         type="text"
         class="form-control"
-        [class.is-invalid]="userName?.invalid && userName?.touched"
-        formControlName="userName"
+        [class.is-invalid]="name?.invalid && name?.touched"
+        formControlName="name"
         placeholder="Enter Your Name"
         required
       />
-      <div *ngIf="userName?.invalid && userName?.touched">
-        <small *ngIf="userName?.errors?.['required']" class="text-danger"
+      <div *ngIf="name?.invalid && name?.touched">
+        <small *ngIf="name?.errors?.['required']" class="text-danger"
           >Name is Required</small
         >
-        <small *ngIf="userName?.errors?.['minlength']" class="text-danger"
+        <small *ngIf="name?.errors?.['minlength']" class="text-danger"
           >Name must has 3 characters</small
         >
-        <small *ngIf="userName?.errors?.['forbiddenName']" class="text-danger">
-          {{userName?.errors?.['forbiddenName'].value}} Username Not
+        <!-- <small *ngIf="userName?.errors?.['forbiddenName']" class="text-danger">
+          {{name?.errors?.['forbiddenName'].value}} name Not
           allowed</small
-        >
-        <small *ngIf="(userName?.errors?.['pattern'])" class="text-danger">
+        > -->
+        <small *ngIf="(name?.errors?.['pattern'])" class="text-danger">
           Should contain only characters</small
         >
       </div>
@@ -69,7 +69,10 @@
         <small *ngIf="password?.errors?.['required']" class="text-danger"
           >Password is Required</small
         >
-        <small *ngIf="(password?.errors?.['pattern'])" class="text-danger">
+        <small
+          *ngIf="(password?.errors?.['patternPasswordForbidden'])"
+          class="text-danger"
+        >
           Password should have a (8 Character, 1 Uppercase, 1 Special
           Character)</small
         >
@@ -124,4 +127,9 @@
       Already Registered? Login
     </button>
   </form>
+  <div [class.display-none]="displayMessage">
+    <div class="message-block">
+      <span class="message-text">Successfully registered!</span>
+    </div>
+  </div>
 </div>
