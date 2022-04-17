@@ -26,4 +26,16 @@
       margin-left: 20px;
     }
   }
+
+  .display-none {
+    display: none;
+  }
+
+  .message-block {
+    display: flex;
+    margin-top: 20px;
+    .message-text {
+      color: green;
+    }
+  }
 }

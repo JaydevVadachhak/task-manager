@@ -6,6 +6,7 @@ import { RouterModule, Router } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { HttpClientModule } from '@angular/common/http';
 import { RegisterUserComponent } from './components/register-user/register-user.component';
 import { LoginUserComponent } from './components/login-user/login-user.component';
 import { HomeNavComponent } from './components/home-nav/home-nav.component';
@@ -35,6 +36,7 @@ import { AboutComponent } from './components/dashboard/about/about.component';
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule,
     NgbModule,
   ],
   providers: [],
