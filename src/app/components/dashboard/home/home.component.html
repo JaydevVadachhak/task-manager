@@ -102,6 +102,7 @@
       <th>Delete</th>
     </thead>
     <tbody>
+      <!-- [appMarkComplete]="{ apply: task.completed }" -->
       <tr *ngFor="let task of tasksList" [class.green-color]="task.completed">
         <td>{{ task._id }}</td>
         <td>{{ task.description }}</td>
@@ -117,8 +118,6 @@
           </button>
         </td>
         <td>
-          <!-- onUpdateTask(task._id) -->
-          <!-- [routerLink]="['/tasks/edit', task._id]" -->
           <button
             class="btn btn-primary"
             [routerLink]="['/tasks/edit', task._id]"

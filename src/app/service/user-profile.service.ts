@@ -67,7 +67,7 @@ export class UserProfileService {
       next: (data) => {
         console.log(data);
         window.sessionStorage.setItem('isAuth', 'false');
-        window.localStorage.removeItem('token');
+        window.localStorage.removeItem('currentUser');
         this.router.navigate(['/userLogin']);
       },
       error: (error) => {
