@@ -64,4 +64,10 @@ export class HomeComponent implements OnInit {
       this.closePopup();
     }
   }
+
+  onDeleteTask(taskId: string) {
+    this.userTasksService.deleteTask(taskId);
+    alert('Task deleted');
+    this.router.navigate(['/userHome']);
+  }
 }

@@ -17,6 +17,7 @@ import { HomeComponent } from './components/dashboard/home/home.component';
 import { ProfileComponent } from './components/dashboard/profile/profile.component';
 import { HelpComponent } from './components/dashboard/help/help.component';
 import { AboutComponent } from './components/dashboard/about/about.component';
+import { UpdateTaskComponent } from './components/update-task/update-task.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { AboutComponent } from './components/dashboard/about/about.component';
     ProfileComponent,
     HelpComponent,
     AboutComponent,
+    UpdateTaskComponent,
   ],
   imports: [
     BrowserModule,

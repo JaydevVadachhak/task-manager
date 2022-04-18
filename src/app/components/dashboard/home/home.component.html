@@ -1,6 +1,7 @@
 <app-header></app-header>
 
 <div class="container">
+  <!-- Add Task Modal -->
   <button type="button" class="btn btn-dark" (click)="openPopup()">
     <span style="color: white">+</span> Add New Task
   </button>
@@ -101,7 +102,6 @@
       <th>Delete</th>
     </thead>
     <tbody>
-      <!--  -->
       <tr *ngFor="let task of tasksList">
         <td>{{ task._id }}</td>
         <td>{{ task.description }}</td>
@@ -110,13 +110,21 @@
         <td>
           <button class="btn btn-success">Mark as complete</button>
         </td>
-        <td><button class="btn btn-primary">Edit</button></td>
-        <td><button class="btn btn-danger">Delete</button></td>
-        <!-- <td>{{ dataid }}</td>
-        <td>{{ data.name }}</td>
-        <td>{{ data.email }}</td>
-        <td>{{ data.gender }}</td>
-        <td>{{ data.status }}</td> -->
+        <td>
+          <!-- onUpdateTask(task._id) -->
+          <!-- [routerLink]="['/tasks/edit', task._id]" -->
+          <button
+            class="btn btn-primary"
+            [routerLink]="['/tasks/edit', task._id]"
+          >
+            Edit
+          </button>
+        </td>
+        <td>
+          <button class="btn btn-danger" (click)="onDeleteTask(task._id)">
+            Delete
+          </button>
+        </td>
       </tr>
     </tbody>
   </table>

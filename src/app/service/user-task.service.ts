@@ -8,11 +8,11 @@ import { UserService } from './user.service';
   providedIn: 'root',
 })
 export class UserTaskService {
-  private url = 'http://localhost:3000/api/tasks';
+  private url = 'http://localhost:3000/api/tasks/';
   task: any;
   tasksList = [{}];
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   setTask(addTaskForm: any) {
     const token = localStorage.getItem('token');
@@ -62,5 +62,53 @@ export class UserTaskService {
     // .subscribe((responseData) => {
     //   console.log(responseData);
     // });
+  }
+
+  deleteTask(taskId: string) {
+    const token = localStorage.getItem('token');
+    const bearer = 'Bearer ' + token;
+    const headers = {
+      Authorization: bearer,
+      'Content-Type': 'application/json',
+    };
+    return this.http.delete(this.url + taskId, { headers: headers }).subscribe({
+      next: (data) => {
+        console.log(data);
+      },
+      error: (error) => {
+        console.error('There was an error!', error);
+        console.log('Invalid Credentials');
+      },
+    });
+  }
+
+  updateTask(updateTaskForm: any, taskId: string) {
+    const token = localStorage.getItem('token');
+    const bearer = 'Bearer ' + token;
+
+    const params = {
+      description: updateTaskForm.description,
+      completed: updateTaskForm.completed,
+    };
+
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: bearer,
+    });
+
+    this.http
+      .patch<any>(this.url + taskId, params, {
+        headers: headers,
+      })
+      .subscribe({
+        next: (data) => {
+          console.log(data);
+          this.router.navigate(['/userHome']);
+        },
+        error: (error) => {
+          console.error('There was an error!', error);
+          console.log('Invalid Credentials');
+        },
+      });
   }
 }
