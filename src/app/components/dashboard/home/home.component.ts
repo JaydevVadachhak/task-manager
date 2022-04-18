@@ -21,7 +21,14 @@ export class HomeComponent implements OnInit {
     private userTasksService: UserTaskService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.userTasksService.getTask().subscribe((tasks) => {
+      console.log(tasks);
+      this.tasksList = tasks;
+      return tasks;
+    });
+    // console.log(this.tasksList);
+  }
 
   addTaskForm = this.formBuilder.group({
     description: ['', [Validators.required, Validators.minLength(10)]],
@@ -48,8 +55,12 @@ export class HomeComponent implements OnInit {
 
   onAddTask(addTaskForm: any) {
     if (addTaskForm.valid) {
-      // this.userTasksService.createTask(addTaskForm.value);
-      // this.tasksList = this.userTasksService.getAllTasks();
+      this.userTasksService.setTask(addTaskForm.value);
+      this.userTasksService.getTask().subscribe((tasks) => {
+        console.log(tasks);
+        this.tasksList = tasks;
+        return tasks;
+      });
       this.closePopup();
     }
   }

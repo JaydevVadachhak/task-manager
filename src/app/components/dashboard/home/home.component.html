@@ -67,7 +67,7 @@
                 <small
                   *ngIf="completed?.errors?.['required']"
                   class="text-danger"
-                  >Status</small
+                  >Status is Required</small
                 >
               </div>
             </div>
@@ -79,11 +79,11 @@
               Add Task
             </button>
           </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-danger" (click)="closePopup()">
-            Close
-          </button>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" (click)="closePopup()">
+              Close
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -101,12 +101,12 @@
       <th>Delete</th>
     </thead>
     <tbody>
-      <!-- *ngFor="let task of tasksList" -->
-      <tr>
-        <td>hello</td>
-        <td>hello</td>
-        <td>hello</td>
-        <td>hello</td>
+      <!--  -->
+      <tr *ngFor="let task of tasksList">
+        <td>{{ task._id }}</td>
+        <td>{{ task.description }}</td>
+        <td>{{ task.completed }}</td>
+        <td>{{ task.createdAt | date }}</td>
         <td>
           <button class="btn btn-success">Mark as complete</button>
         </td>
