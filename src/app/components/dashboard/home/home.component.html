@@ -102,13 +102,19 @@
       <th>Delete</th>
     </thead>
     <tbody>
-      <tr *ngFor="let task of tasksList">
+      <tr *ngFor="let task of tasksList" [class.green-color]="task.completed">
         <td>{{ task._id }}</td>
         <td>{{ task.description }}</td>
-        <td>{{ task.completed }}</td>
-        <td>{{ task.createdAt | date }}</td>
+        <td>{{ task.completed | taskStatus }}</td>
+        <td>{{ task.createdAt | date: "dd/MM/yyyy hh:mm a" }}</td>
         <td>
-          <button class="btn btn-success">Mark as complete</button>
+          <button
+            class="btn btn-success"
+            (click)="onMarkCompleted(task.description, task._id)"
+            [disabled]="task.completed"
+          >
+            Mark as complete
+          </button>
         </td>
         <td>
           <!-- onUpdateTask(task._id) -->

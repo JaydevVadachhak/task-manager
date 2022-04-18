@@ -18,6 +18,7 @@ import { ProfileComponent } from './components/dashboard/profile/profile.compone
 import { HelpComponent } from './components/dashboard/help/help.component';
 import { AboutComponent } from './components/dashboard/about/about.component';
 import { UpdateTaskComponent } from './components/update-task/update-task.component';
+import { TaskStatusPipe } from './pipe/task-status.pipe';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { UpdateTaskComponent } from './components/update-task/update-task.compon
     HelpComponent,
     AboutComponent,
     UpdateTaskComponent,
+    TaskStatusPipe,
   ],
   imports: [
     BrowserModule,

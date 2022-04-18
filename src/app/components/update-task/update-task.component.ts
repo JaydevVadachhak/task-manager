@@ -23,15 +23,7 @@ export class UpdateTaskComponent implements OnInit {
     completed: ['', [Validators.required]],
   });
 
-  ngOnInit(): void {
-    // this.userTaskService.getTask().subscribe((tasks) => {
-    //   console.log(tasks);
-    //   this.tasksList = tasks;
-    //   return tasks;
-    // });
-    // this.tasksList.find((task: any) => task._id === taskIdParamas);
-    // console.log(this.tasksList);
-  }
+  ngOnInit(): void {}
 
   get description() {
     return this.updateTaskForm.get('description');

@@ -111,4 +111,35 @@ export class UserTaskService {
         },
       });
   }
+
+  updateCompletedStatus(taskDescription: string, taskId: string) {
+    const token = localStorage.getItem('token');
+    const bearer = 'Bearer ' + token;
+
+    const params = {
+      description: taskDescription,
+      completed: true,
+    };
+
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: bearer,
+    });
+
+    this.http
+      .patch<any>(this.url + taskId, params, {
+        headers: headers,
+      })
+      .subscribe({
+        next: (data) => {
+          console.log(data);
+          // this.router.navigate(['/userHome']);
+          window.location.reload();
+        },
+        error: (error) => {
+          console.error('There was an error!', error);
+          console.log('Invalid Credentials');
+        },
+      });
+  }
 }

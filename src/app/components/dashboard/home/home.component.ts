@@ -68,6 +68,12 @@ export class HomeComponent implements OnInit {
   onDeleteTask(taskId: string) {
     this.userTasksService.deleteTask(taskId);
     alert('Task deleted');
-    this.router.navigate(['/userHome']);
+    // this.router.navigate(['/userHome']);
+    window.location.reload();
+  }
+
+  onMarkCompleted(taskDescription: string, taskId: string) {
+    console.log(taskId);
+    this.userTasksService.updateCompletedStatus(taskDescription, taskId);
   }
 }
