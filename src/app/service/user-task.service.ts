@@ -49,14 +49,14 @@ export class UserTaskService {
     };
     return this.http.get(this.url, { headers: headers }).pipe(
       map((responseData: any) => {
-        const studentArray = [];
+        const userTasksArray = [];
         let key: any;
         for (key in responseData) {
           if (responseData.hasOwnProperty(key)) {
-            studentArray.push({ ...responseData[key], id: key });
+            userTasksArray.push({ ...responseData[key], id: key });
           }
         }
-        return studentArray;
+        return userTasksArray;
       })
     );
     // .subscribe((responseData) => {
