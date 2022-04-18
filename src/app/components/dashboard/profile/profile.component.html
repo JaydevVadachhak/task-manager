@@ -6,8 +6,12 @@
       <h5 class="card-title">{{ currentUserData?.name }}</h5>
       <p class="card-text">Email Id: {{ currentUserData?.email }}</p>
       <p class="card-text">Age: {{ currentUserData?.age }}</p>
-      <a class="btn btn-success">Edit User Information</a>
-      <a class="btn btn-danger">Delete</a>
+      <a
+        class="btn btn-success"
+        [routerLink]="['/users/edit', currentUserData?._id]"
+        >Edit User Information</a
+      >
+      <a class="btn btn-danger" (click)="onDeleteUser()">Delete</a>
     </div>
   </div>
 </div>

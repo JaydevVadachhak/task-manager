@@ -13,7 +13,11 @@ export class ProfileComponent implements OnInit {
   ngOnInit(): void {
     this.userProfileService.getCurrentUserData().subscribe((data) => {
       this.currentUserData = data;
-      console.log(this.currentUserData);
+      // console.log(this.currentUserData);
     });
+  }
+
+  onDeleteUser() {
+    this.userProfileService.deleteCurrentUserData();
   }
 }

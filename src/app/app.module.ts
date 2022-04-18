@@ -17,8 +17,9 @@ import { HomeComponent } from './components/dashboard/home/home.component';
 import { ProfileComponent } from './components/dashboard/profile/profile.component';
 import { HelpComponent } from './components/dashboard/help/help.component';
 import { AboutComponent } from './components/dashboard/about/about.component';
-import { UpdateTaskComponent } from './components/update-task/update-task.component';
+import { UpdateTaskComponent } from './components/dashboard/update-task/update-task.component';
 import { TaskStatusPipe } from './pipe/task-status.pipe';
+import { UpdateUserComponent } from './components/dashboard/update-user/update-user.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { TaskStatusPipe } from './pipe/task-status.pipe';
     AboutComponent,
     UpdateTaskComponent,
     TaskStatusPipe,
+    UpdateUserComponent,
   ],
   imports: [
     BrowserModule,
