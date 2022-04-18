@@ -21,6 +21,7 @@ import { UpdateTaskComponent } from './components/dashboard/update-task/update-t
 import { TaskStatusPipe } from './pipe/task-status.pipe';
 import { UpdateUserComponent } from './components/dashboard/update-user/update-user.component';
 import { MarkCompleteDirective } from './directive/mark-complete.directive';
+import { SortPipe } from './pipe/sort.pipe';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { MarkCompleteDirective } from './directive/mark-complete.directive';
     TaskStatusPipe,
     UpdateUserComponent,
     MarkCompleteDirective,
+    SortPipe,
   ],
   imports: [
     BrowserModule,

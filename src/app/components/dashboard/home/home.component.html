@@ -107,7 +107,8 @@
         <td>{{ task._id }}</td>
         <td>{{ task.description }}</td>
         <td>{{ task.completed | taskStatus }}</td>
-        <td>{{ task.createdAt | date: "dd/MM/yyyy hh:mm a" }}</td>
+        <!-- dd/MM/yyyy hh:mm a -->
+        <td>{{ task.createdAt | date: "medium" | uppercase }}</td>
         <td>
           <button
             class="btn btn-success"

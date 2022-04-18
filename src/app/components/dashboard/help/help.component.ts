@@ -26,5 +26,9 @@ export class HelpComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  onHelpUser() {}
+  onHelpUser() {
+    console.log(
+      'Help Button Clicked!, We can post help description to .../help api'
+    );
+  }
 }
