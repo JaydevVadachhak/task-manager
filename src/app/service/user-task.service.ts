@@ -64,6 +64,16 @@ export class UserTaskService {
     // });
   }
 
+  getCurrentTask(taskId: string) {
+    const token = localStorage.getItem('token');
+    const bearer = 'Bearer ' + token;
+    const headers = {
+      Authorization: bearer,
+      'Content-Type': 'application/json',
+    };
+    return this.http.get(this.url + taskId, { headers: headers });
+  }
+
   deleteTask(taskId: string) {
     const token = localStorage.getItem('token');
     const bearer = 'Bearer ' + token;

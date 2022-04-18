@@ -10,6 +10,8 @@ import { UpdateTaskComponent } from './components/dashboard/update-task/update-t
 import { AuthLoginGuard } from './guard/auth-login.guard';
 import { AuthGuard } from './guard/auth.guard';
 import { UpdateUserComponent } from './components/dashboard/update-user/update-user.component';
+import { TaskResolver } from './resolver/task.resolver';
+import { UserResolver } from './resolver/user.resolver';
 
 const routes: Routes = [
   {
@@ -30,11 +32,18 @@ const routes: Routes = [
     path: 'userHome',
     component: HomeComponent,
     canActivate: [AuthGuard],
+    resolve: {
+      tasks: TaskResolver,
+      users: UserResolver,
+    },
   },
   {
     path: 'userProfile',
     component: ProfileComponent,
     canActivate: [AuthGuard],
+    resolve: {
+      users: UserResolver,
+    },
   },
   {
     path: 'userAbout',
@@ -55,6 +64,9 @@ const routes: Routes = [
     path: 'users/edit/:userId',
     component: UpdateUserComponent,
     canActivate: [AuthGuard],
+    resolve: {
+      users: UserResolver,
+    },
   },
 ];
 

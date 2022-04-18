@@ -11,6 +11,7 @@ import { UserTaskService } from 'src/app/service/user-task.service';
 export class UpdateTaskComponent implements OnInit {
   pageHeading: string = 'Update Task';
   tasksList: any;
+  currentTask: any = '';
 
   constructor(
     private route: ActivatedRoute,
@@ -18,12 +19,24 @@ export class UpdateTaskComponent implements OnInit {
     private formBuilder: FormBuilder
   ) {}
 
+  ngOnInit(): void {
+    const routeParams = this.route.snapshot.params;
+    const taskIdParamas = routeParams['taskId'];
+    this.userTaskService
+      .getCurrentTask(taskIdParamas)
+      .subscribe((responseData) => {
+        // console.log(responseData);
+        this.currentTask = responseData;
+      });
+  }
+
   updateTaskForm = this.formBuilder.group({
-    description: ['', [Validators.required, Validators.minLength(10)]],
+    description: [
+      this.currentTask.description,
+      [Validators.required, Validators.minLength(10)],
+    ],
     completed: ['', [Validators.required]],
   });
-
-  ngOnInit(): void {}
 
   get description() {
     return this.updateTaskForm.get('description');

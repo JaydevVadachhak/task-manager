@@ -16,6 +16,7 @@
         [class.is-invalid]="name?.invalid && name?.touched"
         formControlName="name"
         placeholder="Enter Your Name"
+        [value]="currentUserData?.name"
         required
       />
       <div *ngIf="name?.invalid && name?.touched">
@@ -38,6 +39,7 @@
         [class.is-invalid]="age?.invalid && age?.touched"
         formControlName="age"
         placeholder="Enter Your Age"
+        [value]="currentUserData?.age"
         required
       />
       <div *ngIf="age?.invalid && age?.touched">

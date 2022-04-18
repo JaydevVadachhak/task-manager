@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.userTasksService.getTask().subscribe((tasks) => {
-      console.log(tasks);
+      // console.log(tasks);
       this.tasksList = tasks;
       return tasks;
     });

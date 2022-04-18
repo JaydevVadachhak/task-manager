@@ -2,7 +2,7 @@
 
 <div class="container">
   <!-- Add Task Modal -->
-  <button type="button" class="btn btn-dark" (click)="openPopup()">
+  <button type="button" class="btn btn-dark btn-add" (click)="openPopup()">
     <span style="color: white">+</span> Add New Task
   </button>
   <div
@@ -102,27 +102,24 @@
       <th>Delete</th>
     </thead>
     <tbody>
+      <!-- [appMarkComplete]="{ apply: task.completed }" -->
       <tr *ngFor="let task of tasksList" [class.green-color]="task.completed">
         <td>{{ task._id }}</td>
         <td>{{ task.description }}</td>
         <td>{{ task.completed | taskStatus }}</td>
-        <td>{{ task.createdAt | date: "dd/MM/yyyy hh:mm a" }}</td>
+        <!-- dd/MM/yyyy hh:mm a -->
+        <td>{{ task.createdAt | date: "medium" | uppercase }}</td>
         <td>
           <button
             class="btn btn-success"
             (click)="onMarkCompleted(task.description, task._id)"
-            [disabled]="task.completed"
+            *ngIf="!task.completed"
           >
             Mark as complete
           </button>
         </td>
         <td>
-          <!-- onUpdateTask(task._id) -->
-          <!-- [routerLink]="['/tasks/edit', task._id]" -->
-          <button
-            class="btn btn-primary"
-            [routerLink]="['/tasks/edit', task._id]"
-          >
+          <button class="btn btn-dark" [routerLink]="['/tasks/edit', task._id]">
             Edit
           </button>
         </td>
