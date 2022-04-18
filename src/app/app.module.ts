@@ -6,6 +6,7 @@ import { RouterModule, Router } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HttpClientModule } from '@angular/common/http';
 import { RegisterUserComponent } from './components/register-user/register-user.component';
 import { LoginUserComponent } from './components/login-user/login-user.component';
@@ -16,6 +17,9 @@ import { HomeComponent } from './components/dashboard/home/home.component';
 import { ProfileComponent } from './components/dashboard/profile/profile.component';
 import { HelpComponent } from './components/dashboard/help/help.component';
 import { AboutComponent } from './components/dashboard/about/about.component';
+import { UpdateTaskComponent } from './components/dashboard/update-task/update-task.component';
+import { TaskStatusPipe } from './pipe/task-status.pipe';
+import { UpdateUserComponent } from './components/dashboard/update-user/update-user.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +33,9 @@ import { AboutComponent } from './components/dashboard/about/about.component';
     ProfileComponent,
     HelpComponent,
     AboutComponent,
+    UpdateTaskComponent,
+    TaskStatusPipe,
+    UpdateUserComponent,
   ],
   imports: [
     BrowserModule,

@@ -6,8 +6,10 @@ import { HomeComponent } from './components/dashboard/home/home.component';
 import { ProfileComponent } from './components/dashboard/profile/profile.component';
 import { LoginUserComponent } from './components/login-user/login-user.component';
 import { RegisterUserComponent } from './components/register-user/register-user.component';
+import { UpdateTaskComponent } from './components/dashboard/update-task/update-task.component';
 import { AuthLoginGuard } from './guard/auth-login.guard';
 import { AuthGuard } from './guard/auth.guard';
+import { UpdateUserComponent } from './components/dashboard/update-user/update-user.component';
 
 const routes: Routes = [
   {
@@ -42,6 +44,16 @@ const routes: Routes = [
   {
     path: 'userHelp',
     component: HelpComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'tasks/edit/:taskId',
+    component: UpdateTaskComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'users/edit/:userId',
+    component: UpdateUserComponent,
     canActivate: [AuthGuard],
   },
 ];

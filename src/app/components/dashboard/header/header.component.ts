@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserProfileService } from 'src/app/service/user-profile.service';
 import { UserService } from 'src/app/service/user.service';
 
 @Component({
@@ -7,9 +8,17 @@ import { UserService } from 'src/app/service/user.service';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  constructor(private userService: UserService) {}
+  currentUserData: any;
+  constructor(
+    private userService: UserService,
+    private userProfileService: UserProfileService
+  ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.userProfileService.getCurrentUserData().subscribe((data) => {
+      this.currentUserData = data;
+    });
+  }
 
   onUserLogOut() {
     this.userService.logOutUser();
