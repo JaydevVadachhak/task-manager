@@ -24,10 +24,6 @@ export class LoginUserComponent implements OnInit {
       loginUserForm.value.email,
       loginUserForm.value.password
     );
-    // this.displayMessage = false;
-    setTimeout(() => {
-      // this.displayMessage = true;
-      this.router.navigate(['userHome']);
-    }, 1000);
+    this.router.navigate(['userHome']);
   }
 }
