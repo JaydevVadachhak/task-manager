@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
   providedIn: 'root',
 })
 export class UserService {
+  token: any;
   user: any;
   usersInfo: any = [];
   usersList = [{}];
@@ -38,7 +39,7 @@ export class UserService {
   }
 
   getUsers() {
-    this.usersInfo = localStorage.getItem('currentUser') || null;
+    this.usersInfo = localStorage.getItem('token') || null;
     this.usersInfo = JSON.parse(this.usersInfo);
     return JSON.stringify(this.usersInfo);
   }
@@ -48,7 +49,7 @@ export class UserService {
     this.usersInfo = {
       token: token,
     };
-    localStorage.setItem('currentUser', JSON.stringify(this.usersInfo));
+    localStorage.setItem('token', JSON.stringify(this.usersInfo));
   }
 
   loginUser(username: any, password: any) {
@@ -73,6 +74,7 @@ export class UserService {
           if (data) {
             this.setUsers(data.token);
             window.sessionStorage.setItem('isAuth', 'true');
+            this.setToken(data.token);
           }
         },
         (err) => {
@@ -83,8 +85,19 @@ export class UserService {
 
   logOutUser() {
     this.usersInfo = [];
-    localStorage.removeItem('currentUser');
+    localStorage.removeItem('token'); //currentUser
     window.sessionStorage.setItem('isAuth', 'false');
     this.router.navigate(['/userLogin']);
+  }
+
+  setToken(token: string) {
+    this.token = '';
+    this.token = token;
+    localStorage.setItem('token', this.token);
+  }
+
+  setUser(user: any) {
+    console.log(user);
+    this.usersInfo = user;
   }
 }

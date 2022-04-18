@@ -24,6 +24,6 @@ export class LoginUserComponent implements OnInit {
       loginUserForm.value.email,
       loginUserForm.value.password
     );
-    this.router.navigate(['userHome']);
+    this.router.navigate(['/userHome']);
   }
 }
