@@ -7,27 +7,21 @@ import {
   ActivatedRouteSnapshot,
 } from '@angular/router';
 import { Observable, of } from 'rxjs';
+import { UserProfileService } from '../service/user-profile.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserResolver implements Resolve<boolean> {
   private url = 'http://localhost:3000/api/users/me';
-  constructor(private http: HttpClient) {}
-  resolve(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
-  ): Observable<boolean> {
-    const token = localStorage.getItem('token');
-    const bearer = 'Bearer ' + token;
-
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      Authorization: bearer,
-    });
-
-    return this.http.get<any>(this.url, {
-      headers: headers,
+  constructor(
+    private http: HttpClient,
+    private userProfileService: UserProfileService
+  ) {}
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): any {
+    this.userProfileService.getCurrentUserData().subscribe((data) => {
+      // console.log(this.currentUser);
+      return of(data);
     });
   }
 }

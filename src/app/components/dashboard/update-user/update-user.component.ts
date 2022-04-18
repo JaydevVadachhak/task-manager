@@ -24,7 +24,7 @@ export class UpdateUserComponent implements OnInit {
 
   updateUserForm = this.formBuilder.group({
     name: [
-      this.currentUserData.name,
+      '',
       [
         Validators.required,
         Validators.minLength(3),
@@ -32,7 +32,7 @@ export class UpdateUserComponent implements OnInit {
       ],
     ],
     age: [
-      this.currentUserData.age,
+      '',
       [Validators.required, Validators.pattern('^(?:1[8-9]|[2-5][0-9]|60)$')],
     ],
   });

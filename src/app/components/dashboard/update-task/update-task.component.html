@@ -17,6 +17,7 @@
         formControlName="description"
         rows="3"
         placeholder="Description..."
+        [value]="currentTask?.description"
         required
       ></textarea>
       <div *ngIf="description?.invalid && description?.touched">
@@ -53,7 +54,7 @@
       class="btn btn-success"
       type="submit"
     >
-      Add Task
+      Update Task
     </button>
     <button class="btn btn-dark" type="button" routerLink="/userHome">
       Go Back

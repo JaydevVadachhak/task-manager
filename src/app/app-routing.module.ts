@@ -64,6 +64,9 @@ const routes: Routes = [
     path: 'users/edit/:userId',
     component: UpdateUserComponent,
     canActivate: [AuthGuard],
+    resolve: {
+      users: UserResolver,
+    },
   },
 ];
 

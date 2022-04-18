@@ -2,7 +2,7 @@
 
 <div class="container">
   <!-- Add Task Modal -->
-  <button type="button" class="btn btn-dark" (click)="openPopup()">
+  <button type="button" class="btn btn-dark btn-add" (click)="openPopup()">
     <span style="color: white">+</span> Add New Task
   </button>
   <div
@@ -113,16 +113,13 @@
           <button
             class="btn btn-success"
             (click)="onMarkCompleted(task.description, task._id)"
-            [disabled]="task.completed"
+            *ngIf="!task.completed"
           >
             Mark as complete
           </button>
         </td>
         <td>
-          <button
-            class="btn btn-primary"
-            [routerLink]="['/tasks/edit', task._id]"
-          >
+          <button class="btn btn-dark" [routerLink]="['/tasks/edit', task._id]">
             Edit
           </button>
         </td>
