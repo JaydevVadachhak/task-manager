@@ -1,14 +1,124 @@
 <app-header></app-header>
-<div class="card" style="width: 18rem">
-  <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-    <p class="card-text">
-      Some quick example text to build on the card title and make up the bulk of
-      the card's content.
-    </p>
-    <a href="#" class="card-link">Card link</a>
-    <a href="#" class="card-link">Another link</a>
+
+<div class="container">
+  <button type="button" class="btn btn-dark" (click)="openPopup()">
+    <span style="color: white">+</span> Add New Task
+  </button>
+  <div
+    class="modal"
+    tabindex="-1"
+    role="dialog"
+    [ngStyle]="{ display: displayStyle }"
+  >
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Add Task</h4>
+        </div>
+        <div class="modal-body">
+          <form
+            class="form-horizontal"
+            [formGroup]="addTaskForm"
+            (ngSubmit)="onAddTask(addTaskForm)"
+          >
+            <div class="mb-3">
+              <label for="exampleFormControlTextarea1" class="form-label"
+                >Task Description&nbsp;<span style="color: red">*</span></label
+              >
+              <textarea
+                class="form-control"
+                id="exampleFormControlTextarea1"
+                [class.is-invalid]="
+                  description?.invalid && description?.touched
+                "
+                formControlName="description"
+                rows="3"
+                placeholder="Description..."
+                required
+              ></textarea>
+              <div *ngIf="description?.invalid && description?.touched">
+                <small
+                  *ngIf="description?.errors?.['required']"
+                  class="text-danger"
+                  >Task Description is required</small
+                >
+                <small
+                  *ngIf="description?.errors?.['minlength']"
+                  class="text-danger"
+                  >Description must has atleast 10 characters</small
+                >
+              </div>
+            </div>
+            <div class="mb-3">
+              <label class="form-label"
+                >Task Status&nbsp;<span style="color: red">*</span></label
+              >
+              <select
+                class="form-select"
+                [class.is-invalid]="completed?.invalid && completed?.touched"
+                formControlName="completed"
+                aria-label="Default select example"
+                required
+              >
+                <option value="true">Completed</option>
+                <option value="false">Pending</option>
+              </select>
+              <div *ngIf="completed?.invalid && completed?.touched">
+                <small
+                  *ngIf="completed?.errors?.['required']"
+                  class="text-danger"
+                  >Status</small
+                >
+              </div>
+            </div>
+            <button
+              [disabled]="addTaskForm.invalid"
+              class="btn btn-success"
+              type="submit"
+            >
+              Add Task
+            </button>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" (click)="closePopup()">
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
+
+  <!-- Table -->
+  <table class="table table-striped dash-table">
+    <thead>
+      <th>Index</th>
+      <th>Description</th>
+      <th>Status</th>
+      <th>Create Time</th>
+      <th>Mark Complete</th>
+      <th>Edit</th>
+      <th>Delete</th>
+    </thead>
+    <tbody>
+      <!-- *ngFor="let task of tasksList" -->
+      <tr>
+        <td>hello</td>
+        <td>hello</td>
+        <td>hello</td>
+        <td>hello</td>
+        <td>
+          <button class="btn btn-success">Mark as complete</button>
+        </td>
+        <td><button class="btn btn-primary">Edit</button></td>
+        <td><button class="btn btn-danger">Delete</button></td>
+        <!-- <td>{{ dataid }}</td>
+        <td>{{ data.name }}</td>
+        <td>{{ data.email }}</td>
+        <td>{{ data.gender }}</td>
+        <td>{{ data.status }}</td> -->
+      </tr>
+    </tbody>
+  </table>
 </div>
 <app-footer></app-footer>

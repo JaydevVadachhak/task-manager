@@ -30,6 +30,7 @@ export class UserService {
       .subscribe((res) => {
         localStorage.clear();
         const token = Object.values(res)[1];
+        console.log(token);
         localStorage.setItem('token', token);
       });
 

@@ -25,10 +25,6 @@
         <small *ngIf="name?.errors?.['minlength']" class="text-danger"
           >Name must has 3 characters</small
         >
-        <!-- <small *ngIf="userName?.errors?.['forbiddenName']" class="text-danger">
-          {{name?.errors?.['forbiddenName'].value}} name Not
-          allowed</small
-        > -->
         <small *ngIf="(name?.errors?.['pattern'])" class="text-danger">
           Should contain only characters</small
         >
