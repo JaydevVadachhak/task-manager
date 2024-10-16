@@ -22,6 +22,7 @@ import { TaskStatusPipe } from './pipe/task-status.pipe';
 import { UpdateUserComponent } from './components/dashboard/update-user/update-user.component';
 import { MarkCompleteDirective } from './directive/mark-complete.directive';
 import { SortPipe } from './pipe/sort.pipe';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,12 @@ import { SortPipe } from './pipe/sort.pipe';
     HttpClientModule,
     NgbModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: LocationStrategy,
+      useClass: HashLocationStrategy,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

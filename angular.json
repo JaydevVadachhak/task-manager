@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "1007-Jaydev-angular-task-manager": {
+    "task-manager": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -20,7 +20,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/1007-jaydev-angular-task-manager",
+            "outputPath": "dist/task-manager",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -67,10 +67,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "1007-Jaydev-angular-task-manager:build:production"
+              "browserTarget": "task-manager:build:production"
             },
             "development": {
-              "browserTarget": "1007-Jaydev-angular-task-manager:build:development"
+              "browserTarget": "task-manager:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -78,7 +78,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "1007-Jaydev-angular-task-manager:build"
+            "browserTarget": "task-manager:build"
           }
         },
         "test": {
@@ -97,5 +97,8 @@
       }
     }
   },
-  "defaultProject": "1007-Jaydev-angular-task-manager"
+  "defaultProject": "task-manager",
+  "cli": {
+    "analytics": "77f46744-2fd7-497d-b738-416ed217252e"
+  }
 }
