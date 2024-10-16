@@ -12,3 +12,7 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The appli
 node 18.20.4
 npm 10.9.0
 ```
+
+## Server
+
+[👉 Github Link for Express Server](https://github.com/JaydevVadachhak/task-manager-server)
