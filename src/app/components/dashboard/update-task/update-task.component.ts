@@ -12,6 +12,7 @@ export class UpdateTaskComponent implements OnInit {
   pageHeading: string = 'Update Task';
   tasksList: any;
   currentTask: any = '';
+  categories: string[] = ['Work', 'Personal', 'Shopping', 'Health', 'General'];
 
   constructor(
     private route: ActivatedRoute,
@@ -27,15 +28,18 @@ export class UpdateTaskComponent implements OnInit {
       .subscribe((responseData) => {
         // console.log(responseData);
         this.currentTask = responseData;
+        this.updateTaskForm.patchValue({
+          description: this.currentTask.description,
+          completed: String(this.currentTask.completed),
+          category: this.currentTask.category || 'General',
+        });
       });
   }
 
   updateTaskForm = this.formBuilder.group({
-    description: [
-      this.currentTask.description,
-      [Validators.required, Validators.minLength(10)],
-    ],
+    description: ['', [Validators.required, Validators.minLength(10)]],
     completed: ['', [Validators.required]],
+    category: ['General', [Validators.required]],
   });
 
   get description() {
@@ -44,6 +48,10 @@ export class UpdateTaskComponent implements OnInit {
 
   get completed() {
     return this.updateTaskForm.get('completed');
+  }
+
+  get category() {
+    return this.updateTaskForm.get('category');
   }
 
   onUpdateTask(updateTaskForm: any) {

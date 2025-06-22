@@ -20,6 +20,7 @@ export class UserTaskService {
     let new_task = {
       description: addTaskForm.description,
       completed: addTaskForm.completed,
+      category: addTaskForm.category || 'General',
     };
 
     const bearer = 'Bearer ' + token;
@@ -64,6 +65,27 @@ export class UserTaskService {
     // });
   }
 
+  getTasksByCategory(category: string) {
+    const token = localStorage.getItem('token');
+    const bearer = 'Bearer ' + token;
+    const headers = {
+      Authorization: bearer,
+      'Content-Type': 'application/json',
+    };
+    return this.http.get(this.url, { headers: headers }).pipe(
+      map((responseData: any) => {
+        const userTasksArray = [];
+        let key: any;
+        for (key in responseData) {
+          if (responseData.hasOwnProperty(key)) {
+            userTasksArray.push({ ...responseData[key], id: key });
+          }
+        }
+        return userTasksArray.filter((task: any) => task.category === category);
+      })
+    );
+  }
+
   getCurrentTask(taskId: string) {
     const token = localStorage.getItem('token');
     const bearer = 'Bearer ' + token;
@@ -99,6 +121,7 @@ export class UserTaskService {
     const params = {
       description: updateTaskForm.description,
       completed: updateTaskForm.completed,
+      category: updateTaskForm.category,
     };
 
     const headers = new HttpHeaders({
@@ -122,13 +145,18 @@ export class UserTaskService {
       });
   }
 
-  updateCompletedStatus(taskDescription: string, taskId: string) {
+  updateCompletedStatus(
+    taskDescription: string,
+    taskId: string,
+    category: string = 'General'
+  ) {
     const token = localStorage.getItem('token');
     const bearer = 'Bearer ' + token;
 
     const params = {
       description: taskDescription,
       completed: true,
+      category: category,
     };
 
     const headers = new HttpHeaders({

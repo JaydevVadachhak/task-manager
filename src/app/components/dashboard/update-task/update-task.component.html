@@ -49,6 +49,25 @@
         >
       </div>
     </div>
+    <div class="mb-3">
+      <label class="form-label"
+        >Category&nbsp;<span style="color: red">*</span></label
+      >
+      <select
+        class="form-select"
+        [class.is-invalid]="category?.invalid && category?.touched"
+        formControlName="category"
+        aria-label="Category selection"
+        required
+      >
+        <option *ngFor="let cat of categories" [value]="cat">{{ cat }}</option>
+      </select>
+      <div *ngIf="category?.invalid && category?.touched">
+        <small *ngIf="category?.errors?.['required']" class="text-danger"
+          >Category is Required</small
+        >
+      </div>
+    </div>
     <button
       [disabled]="updateTaskForm.invalid"
       class="btn btn-success"

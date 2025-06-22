@@ -14,6 +14,16 @@ import { map } from 'rxjs';
 })
 export class HomeComponent implements OnInit {
   tasksList: any;
+  filteredTasksList: any;
+  selectedCategory: string = 'All';
+  categories: string[] = [
+    'All',
+    'Work',
+    'Personal',
+    'Shopping',
+    'Health',
+    'General',
+  ];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -22,17 +32,21 @@ export class HomeComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.loadTasks();
+  }
+
+  loadTasks() {
     this.userTasksService.getTask().subscribe((tasks) => {
-      // console.log(tasks);
       this.tasksList = tasks;
+      this.filteredTasksList = tasks;
       return tasks;
     });
-    // console.log(this.tasksList);
   }
 
   addTaskForm = this.formBuilder.group({
     description: ['', [Validators.required, Validators.minLength(10)]],
     completed: ['', [Validators.required]],
+    category: ['General', [Validators.required]],
   });
 
   get description() {
@@ -41,6 +55,10 @@ export class HomeComponent implements OnInit {
 
   get completed() {
     return this.addTaskForm.get('completed');
+  }
+
+  get category() {
+    return this.addTaskForm.get('category');
   }
 
   displayStyle = 'none';
@@ -56,11 +74,7 @@ export class HomeComponent implements OnInit {
   onAddTask(addTaskForm: any) {
     if (addTaskForm.valid) {
       this.userTasksService.setTask(addTaskForm.value);
-      this.userTasksService.getTask().subscribe((tasks) => {
-        console.log(tasks);
-        this.tasksList = tasks;
-        return tasks;
-      });
+      this.loadTasks();
       this.closePopup();
     }
   }
@@ -72,8 +86,22 @@ export class HomeComponent implements OnInit {
     window.location.reload();
   }
 
-  onMarkCompleted(taskDescription: string, taskId: string) {
-    console.log(taskId);
-    this.userTasksService.updateCompletedStatus(taskDescription, taskId);
+  onMarkCompleted(taskDescription: string, taskId: string, category: string) {
+    this.userTasksService.updateCompletedStatus(
+      taskDescription,
+      taskId,
+      category
+    );
+  }
+
+  filterByCategory(category: string) {
+    this.selectedCategory = category;
+    if (category === 'All') {
+      this.filteredTasksList = this.tasksList;
+    } else {
+      this.filteredTasksList = this.tasksList.filter(
+        (task: any) => task.category === category
+      );
+    }
   }
 }

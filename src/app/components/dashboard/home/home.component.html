@@ -1,6 +1,22 @@
 <app-header></app-header>
 
 <div class="container">
+  <!-- Category Filter -->
+  <div class="category-filter mb-4">
+    <h5>Filter by Category:</h5>
+    <div class="btn-group" role="group" aria-label="Category filter">
+      <button
+        *ngFor="let cat of categories"
+        class="btn"
+        [class.btn-primary]="selectedCategory === cat"
+        [class.btn-outline-primary]="selectedCategory !== cat"
+        (click)="filterByCategory(cat)"
+      >
+        {{ cat }}
+      </button>
+    </div>
+  </div>
+
   <!-- Add Task Modal -->
   <button type="button" class="btn btn-dark btn-add" (click)="openPopup()">
     <span style="color: white">+</span> Add New Task
@@ -72,6 +88,29 @@
                 >
               </div>
             </div>
+            <div class="mb-3">
+              <label class="form-label"
+                >Category&nbsp;<span style="color: red">*</span></label
+              >
+              <select
+                class="form-select"
+                [class.is-invalid]="category?.invalid && category?.touched"
+                formControlName="category"
+                aria-label="Category selection"
+                required
+              >
+                <option *ngFor="let cat of categories.slice(1)" [value]="cat">
+                  {{ cat }}
+                </option>
+              </select>
+              <div *ngIf="category?.invalid && category?.touched">
+                <small
+                  *ngIf="category?.errors?.['required']"
+                  class="text-danger"
+                  >Category is Required</small
+                >
+              </div>
+            </div>
             <button
               [disabled]="addTaskForm.invalid"
               class="btn btn-success"
@@ -95,6 +134,7 @@
     <thead>
       <th>Index</th>
       <th>Description</th>
+      <th>Category</th>
       <th>Status</th>
       <th>Create Time</th>
       <th>Mark Complete</th>
@@ -102,17 +142,19 @@
       <th>Delete</th>
     </thead>
     <tbody>
-      <!-- [appMarkComplete]="{ apply: task.completed }" -->
-      <tr *ngFor="let task of tasksList" [class.green-color]="task.completed">
+      <tr
+        *ngFor="let task of filteredTasksList"
+        [class.green-color]="task.completed"
+      >
         <td>{{ task._id }}</td>
         <td>{{ task.description }}</td>
+        <td>{{ task.category || "General" }}</td>
         <td>{{ task.completed | taskStatus }}</td>
-        <!-- dd/MM/yyyy hh:mm a -->
-        <td>{{ task.createdAt | date: "medium" | uppercase }}</td>
+        <td>{{ task.createdAt | date : "medium" | uppercase }}</td>
         <td>
           <button
             class="btn btn-success"
-            (click)="onMarkCompleted(task.description, task._id)"
+            (click)="onMarkCompleted(task.description, task._id, task.category)"
             *ngIf="!task.completed"
           >
             Mark as complete

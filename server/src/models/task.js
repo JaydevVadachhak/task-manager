@@ -10,6 +10,11 @@ const schema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
+    category: {
+        type: String,
+        default: 'General',
+        trim: true
+    },
     user: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
@@ -21,4 +26,4 @@ const schema = new mongoose.Schema({
 
 const Task = mongoose.model('Task', schema)
 
-module.exports  = Task;
+module.exports = Task;
