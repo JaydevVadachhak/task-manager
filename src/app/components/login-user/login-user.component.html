@@ -13,7 +13,7 @@
         class="form-control"
         [class.is-invalid]="email?.invalid && email?.touched"
         #email="ngModel"
-        pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+        pattern="^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$"
         name="email"
         placeholder="name@example.com"
         ngModel
